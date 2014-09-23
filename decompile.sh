@@ -30,13 +30,13 @@ build_jd() {
 }
 
 get_sw_support() {
-   wget -c $U_BAKSMALI
-   wget -c $U_SMALI
-   wget -c $U_D2J
+   wget -qc $U_BAKSMALI
+   wget -qc $U_SMALI
+   wget -qc $U_D2J
    unzip -q -u dex2jar-$D2J_VER.zip
-   wget -c $U_JD -O jd-core-java.zip
+   wget -qc $U_JD -O jd-core-java.zip
    build_jd
-   wget -c $U_APKTOOL -O apktool_$APK_VER.jar
+   wget -qc $U_APKTOOL -O apktool_$APK_VER.jar
    return
 }
 
