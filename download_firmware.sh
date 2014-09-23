@@ -12,7 +12,7 @@ fi
 
 echo "Downloading..."
 
-wget -qc "$URL/$ROM"
+wget -c "$URL/$ROM"
 
 echo "Convert to TAR archive..."
 

@@ -23,20 +23,28 @@ usage() {
 
 build_jd() {
    unzip -q -u jd-core-java.zip
-   pushd jd-core-java-master
+   pushd jd-core-java-master > /dev/null
    ./gradlew assemble
    cp build/libs/jd-core-java-1.2.jar ..
-   popd
+   popd > /dev/null
 }
 
 get_sw_support() {
+   echo -n "Downloading: "
+   echo -n "baksmali"
    wget -qc $U_BAKSMALI
+   echo -n ", smali"
    wget -qc $U_SMALI
-   wget -qc $U_D2J
-   unzip -q -u dex2jar-$D2J_VER.zip
-   wget -qc $U_JD -O jd-core-java.zip
-   build_jd
+   echo -n ", apktool"
    wget -qc $U_APKTOOL -O apktool_$APK_VER.jar
+   echo -n ", dex2jar"
+   wget -qc $U_D2J
+   echo -n " (unpack)"
+   unzip -q -u dex2jar-$D2J_VER.zip
+   echo -n ", jd-core-java"
+   wget -qc $U_JD -O jd-core-java.zip
+   echo -n " (building)"
+   build_jd
    return
 }
 
@@ -47,6 +55,10 @@ FW=$TARGET/framework
 
 get_sw_support
 
+echo "installing framework ..."
+java -jar apktool_$APK_VER.jar if $FW/framework-res.apk
+
+echo "do the evil thing..."
 for i in $TARGET/app/*.odex; do
    name1=`basename -s.odex $i`
    name2=`dirname $i`/$name1
