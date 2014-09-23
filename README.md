@@ -11,3 +11,11 @@ Tools (bash scripts) to decompile Renault R-Link Java Apps
 - download_firmware.sh
   Downloads the firmware version specified in the argument and
   unpacks it.
+
+- toolchain
+  This directory contains the toolchain for compiling uboot and kernel.
+  It requires an anjient compiler (gcc-4.3), so best is to install
+  an old linux distro (e.g. debian lenny) to a vm without network for
+  security reasons.
+  It supports only old ARM11 targets and needs an update for our shiny
+  new OMAP3.
