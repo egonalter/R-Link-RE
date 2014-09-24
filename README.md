@@ -19,3 +19,6 @@ Tools (bash scripts) to decompile Renault R-Link Java Apps
   security reasons.
   It supports only old ARM11 targets and needs an update for our shiny
   new OMAP3.
+
+- repack-zImage.sh
+  Script to "unpack" a zImage (kernel, ramdisk, stuff).
