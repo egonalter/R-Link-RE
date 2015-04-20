@@ -3,16 +3,16 @@
 # Tool to decompile Renault R-Link Java Apps
 #
 
-BS_VER=2.0.3
-D2J_VER=0.0.9.15
-APK_VER=2.0.0b9
+BS_VER=2.0.5
+D2J_VER=2.0
+APK_VER=2.0.0rc4
 
-U_BAKSMALI=https://smali.googlecode.com/files/baksmali-$BS_VER.jar
-U_SMALI=https://smali.googlecode.com/files/smali-$BS_VER.jar
-U_D2J=http://dex2jar.googlecode.com/files/dex2jar-$D2J_VER.zip
+U_BAKSMALI=https://bitbucket.org/JesusFreke/smali/downloads/baksmali-$BS_VER.jar
+U_SMALI=https://bitbucket.org/JesusFreke/smali/downloads/smali-$BS_VER.jar
+U_D2J=http://sourceforge.net/projects/dex2jar/files/dex2jar-2.0.zip/download
 U_JD=https://github.com/nviennot/jd-core-java/archive/master.zip
 # http://android-apktool.googlecode.com/files/apktool$APK_VER.tar.bz2
-U_APKTOOL=http://connortumbleson.com/apktool/test_versions/apktool_$APK_VER.jar?ref=blog-post
+U_APKTOOL=https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_$APK_VER.jar
 
 usage() {
     echo "Reverse Engineering R-Link filesystem"
@@ -38,9 +38,10 @@ get_sw_support() {
    echo -n ", apktool"
    wget -qc $U_APKTOOL -O apktool_$APK_VER.jar
    echo -n ", dex2jar"
-   wget -qc $U_D2J
+   wget -qc -O dex2jar-$D2J_VER.zip $U_D2J
    echo -n " (unpack)"
    unzip -q -u dex2jar-$D2J_VER.zip
+   chmod +x dex2jar-$D2J_VER/*.sh
    echo -n ", jd-core-java"
    wget -qc $U_JD -O jd-core-java.zip
    echo -n " (building)"
